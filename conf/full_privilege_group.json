@@ -1,0 +1,26 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "This template creates the an IAM group that has full admin access to the AWS account.",
+    "Resources": {
+        "readonlygrou": {
+            "Type": "AWS::IAM::Group",
+            "Properties": {
+                "Policies": [
+                    {
+                        "PolicyName": "AdminPolicy",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Action": "*",
+                                    "Effect": "Allow",
+                                    "Resource": "*"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

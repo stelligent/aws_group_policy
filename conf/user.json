@@ -1,0 +1,38 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "This template creates a user in a specific group.",
+    "Parameters" : {
+      "password" : {
+          "NoEcho" : "TRUE",
+          "Type" : "String",
+          "Default" : "P4ssw0rd!"
+        },
+      "group" : {
+          "Type" : "String",
+          "Default" : "jonny-test-group-readonlygrou-7DADAHEHHVS6"
+        }
+    },
+    "Resources": {
+        "user": {
+            "Type": "AWS::IAM::User",
+            "Properties": {
+                "LoginProfile": {
+                    "Password": { "Ref" : "password" }
+                }
+            }
+        },
+        "Users": {
+            "Type": "AWS::IAM::UserToGroupAddition",
+            "Properties": {
+                "GroupName": {
+                    "Ref": "group"
+                },
+                "Users": [
+                    {
+                        "Ref": "user"
+                    }
+                ]
+            }
+        }
+    }
+}
