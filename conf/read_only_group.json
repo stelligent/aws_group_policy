@@ -2,7 +2,7 @@
     "AWSTemplateFormatVersion": "2010-09-09",
     "Description": "This template creates the an IAM group that has read-only access to the AWS account, but is also granted the ability to create attach an MFA to their account.",
     "Resources": {
-        "readonlygrou": {
+        "readonlygroup": {
             "Type": "AWS::IAM::Group",
             "Properties": {
                 "Policies": [
