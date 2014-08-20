@@ -5,11 +5,11 @@
       "password" : {
           "NoEcho" : "TRUE",
           "Type" : "String",
-          "Default" : "P4ssw0rd!"
+          "Default" : "your-very-strong-default-password"
         },
       "group" : {
           "Type" : "String",
-          "Default" : "jonny-test-group-readonlygrou-7DADAHEHHVS6"
+          "Default" : "lookup-your-group-name-in-cloudformation-resources-tab-and-put-it-here"
         }
     },
     "Resources": {
