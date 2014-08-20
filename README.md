@@ -1,10 +1,9 @@
 # aws_group_policy
 
-###description
-=============
-
 This repo contains CloudFormation templates and Ruby scripts to help manage your AWS IAM users.
 
+###description
+=============
 An AWS IAM best practice is to require users to have multi-factor authentication devices attached to their accounts. Unfortunately, the default read-only policy doesn't allow users to attach an MFA to their account, and it's somewhat unclear what exact permissions are required to do so. 
 
 So what ends up happening is in your quest to have secure account access, you give your users overly-broad permissions, and then that account is only password protected. 
@@ -13,7 +12,6 @@ This repo gives you the tools to avoid this anti-pattern. It contains two CloudF
 
 ###contents
 ========
-
 * **conf/full_privilege_group.json** -- this template creates an IAM Group with full admin privleges. 
 * **conf/read_only_group.json** -- this template creates an IAM group with read-only access, but also the ability to create and attach an MFA to their IAM account.
 * **conf/user.json** -- this isn't required, but is a simple CloudFormation template for creating a user. If you want to use the Cucumber feature, you can use this template to create a user to test with (though you'll still need to download the credentials from the console).
@@ -22,7 +20,6 @@ This repo gives you the tools to avoid this anti-pattern. It contains two CloudF
 
 ###usage
 =====
-
 To use this script, you'll need to create the two IAM Groups, and then look up their group names. Assign your desired users into either of the groups. Run the script with the names punched in and it'll figure out the rest.
 
 Assuming you have git, the AWS CLI, and Ruby installed...
@@ -46,7 +43,6 @@ You should see output like this:
     
 ###running the tests
 ====
-
 If you want to see the cucumber tests run, you'll need to manually create an IAM user and assign it to the read-only group. (there's a template in /conf that will set this all up for you).  You'll need to log into the console and grab its API keys, though.
 
     aws cloudformation create-stack --stack-name "test-read-only-user" --template-body file://./conf/user.json --capabilities="CAPABILITY_IAM" --parameters ParameterKey="group",ParameterValue="ReadOnlyGroup"
