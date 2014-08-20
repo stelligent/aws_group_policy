@@ -12,8 +12,8 @@ This repo gives you the tools to avoid this anti-pattern. It contains two CloudF
 
 ###contents
 ========
-* **conf/full_privilege_group.json** -- this template creates an IAM Group with full admin privleges. 
-* **conf/read_only_group.json** -- this template creates an IAM group with read-only access, but also the ability to create and attach an MFA to their IAM account.
+* **conf/full_privilege_group.json** -- this CloudFormation template creates an IAM Group with full admin privleges. 
+* **conf/read_only_group.json** -- this CloudFormation template creates an IAM group with read-only access, but also the ability to create and attach an MFA to their IAM account.
 * **conf/user.json** -- this isn't required, but is a simple CloudFormation template for creating a user. If you want to use the Cucumber feature, you can use this template to create a user to test with (though you'll still need to download the credentials from the console).
 * **features/** -- this directory contains a Cucumber test to ensure that the read-only policy is read-only enough, but still allows users to create and attach MFAs. 
 * **bin/check_accounts.rb** -- this is the Ruby script that puts users into the appropriate group.
