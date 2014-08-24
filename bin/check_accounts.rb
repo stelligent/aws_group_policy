@@ -32,7 +32,7 @@ all_users.each do |user|
     end
   elsif member_of_group? iam, opts[:read_only_group], user.user_name
     if iam.list_mfa_devices(user_name: user.user_name).mfa_devices.size > 0
-      puts "privileged user #{user.user_name} has an MFA attached, moving to full-privileged group #{opts[:full_privilege_group]}"
+      puts "read-only user #{user.user_name} has an MFA attached, moving to full-privileged group #{opts[:full_privilege_group]}"
       iam.add_user_to_group user_name: user.user_name, group_name: opts[:full_privilege_group]
       iam.remove_user_from_group user_name: user.user_name, group_name: opts[:read_only_group]
     end
