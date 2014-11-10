@@ -161,5 +161,12 @@
                 ]
             }
         }
+    },
+
+    "Outputs" : {
+        "CreatedGroupId" : {
+            "Value" : { "Ref" : "readonlygroup" },
+            "Description" : "The Physical ID of the IAM group created by this template"
+        }
     }
 }
