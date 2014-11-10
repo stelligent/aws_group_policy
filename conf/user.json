@@ -2,12 +2,12 @@
     "AWSTemplateFormatVersion": "2010-09-09",
     "Description": "This template creates a user in a specific group.",
     "Parameters" : {
-      "password" : {
+      "PasswordOfUserBeingCreated" : {
           "NoEcho" : "TRUE",
           "Type" : "String",
           "Default" : "your-very-strong-default-password"
         },
-      "group" : {
+      "PhysicalIdOfIamGroupToCreateUserIn" : {
           "Type" : "String",
           "Default" : "lookup-your-group-name-in-cloudformation-resources-tab-and-put-it-here"
         }
@@ -17,7 +17,7 @@
             "Type": "AWS::IAM::User",
             "Properties": {
                 "LoginProfile": {
-                    "Password": { "Ref" : "password" }
+                    "Password": { "Ref" : "PasswordOfUserBeingCreated" }
                 }
             }
         },
@@ -25,7 +25,7 @@
             "Type": "AWS::IAM::UserToGroupAddition",
             "Properties": {
                 "GroupName": {
-                    "Ref": "group"
+                    "Ref": "PhysicalIdOfIamGroupToCreateUserIn"
                 },
                 "Users": [
                     {
