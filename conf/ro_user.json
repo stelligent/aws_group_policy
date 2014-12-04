@@ -5,7 +5,7 @@
       "PasswordOfUserBeingCreated" : {
           "NoEcho" : "TRUE",
           "Type" : "String",
-          "Default" : "your-very-strong-default-password"
+          "Description" : "A strong, randomized password that meets your IAM password complexity requirements. This will be assigned to the user created."
         }
     },
     "Resources": {
