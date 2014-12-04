@@ -1,0 +1,178 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "This template creates a user with a Read Only policy attached."
+    "Parameters" : {
+      "PasswordOfUserBeingCreated" : {
+          "NoEcho" : "TRUE",
+          "Type" : "String",
+          "Default" : "your-very-strong-default-password"
+        }
+    },
+    "Resources": {
+        "user": {
+            "Type": "AWS::IAM::User",
+            "Properties": {
+                "LoginProfile": {
+                    "Password": { "Ref" : "PasswordOfUserBeingCreated" }
+                }
+                "Policies": [
+                    {
+                        "PolicyName": "ReadOnlyPolicy",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Action": [
+                                        "appstream:Get*",
+                                        "autoscaling:Describe*",
+                                        "cloudformation:DescribeStacks",
+                                        "cloudformation:DescribeStackEvents",
+                                        "cloudformation:DescribeStackResource",
+                                        "cloudformation:DescribeStackResources",
+                                        "cloudformation:GetTemplate",
+                                        "cloudformation:List*",
+                                        "cloudfront:Get*",
+                                        "cloudfront:List*",
+                                        "cloudtrail:DescribeTrails",
+                                        "cloudtrail:GetTrailStatus",
+                                        "cloudwatch:Describe*",
+                                        "cloudwatch:Get*",
+                                        "cloudwatch:List*",
+                                        "directconnect:Describe*",
+                                        "dynamodb:GetItem",
+                                        "dynamodb:BatchGetItem",
+                                        "dynamodb:Query",
+                                        "dynamodb:Scan",
+                                        "dynamodb:DescribeTable",
+                                        "dynamodb:ListTables",
+                                        "ec2:Describe*",
+                                        "elasticache:Describe*",
+                                        "elasticbeanstalk:Check*",
+                                        "elasticbeanstalk:Describe*",
+                                        "elasticbeanstalk:List*",
+                                        "elasticbeanstalk:RequestEnvironmentInfo",
+                                        "elasticbeanstalk:RetrieveEnvironmentInfo",
+                                        "elasticloadbalancing:Describe*",
+                                        "elastictranscoder:Read*",
+                                        "elastictranscoder:List*",
+                                        "iam:List*",
+                                        "iam:Get*",
+                                        "opsworks:Describe*",
+                                        "opsworks:Get*",
+                                        "route53:Get*",
+                                        "route53:List*",
+                                        "redshift:Describe*",
+                                        "redshift:ViewQueriesInConsole",
+                                        "rds:Describe*",
+                                        "rds:ListTagsForResource",
+                                        "s3:Get*",
+                                        "s3:List*",
+                                        "sdb:GetAttributes",
+                                        "sdb:List*",
+                                        "sdb:Select*",
+                                        "ses:Get*",
+                                        "ses:List*",
+                                        "sns:Get*",
+                                        "sns:List*",
+                                        "sqs:GetQueueAttributes",
+                                        "sqs:ListQueues",
+                                        "sqs:ReceiveMessage",
+                                        "storagegateway:List*",
+                                        "storagegateway:Describe*",
+                                        "sts:DecodeAuthorizationMessage"
+                                    ],
+                                    "Effect": "Allow",
+                                    "Resource": "*"
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "PolicyName": "ManageMFAPolicy",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "iam:CreateVirtualMFADevice",
+                                        "iam:DeleteVirtualMFADevice",
+                                        "iam:CreateAccessKey",
+                                        "iam:DeleteAccessKey",
+                                        "iam:EnableMFADevice",
+                                        "iam:DeactivateMFADevice",
+                                        "iam:CreateAccessKey",
+                                        "iam:UpdateAccessKey",
+                                        "iam:DeleteAccessKey",
+                                        "iam:ResyncMFADevice"
+                                    ],
+                                    "Resource": [
+                                        {
+                                            "Fn::Join": [
+                                                "",
+                                                [
+                                                    "arn:aws:iam::",
+                                                    {
+                                                        "Ref": "AWS::AccountId"
+                                                    },
+                                                    ":mfa/*"
+                                                ]
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "Effect": "Allow",
+                                    "Action": [
+                                        "iam:CreateVirtualMFADevice",
+                                        "iam:DeleteVirtualMFADevice",
+                                        "iam:CreateAccessKey",
+                                        "iam:DeleteAccessKey",
+                                        "iam:EnableMFADevice",
+                                        "iam:DeactivateMFADevice",
+                                        "iam:CreateAccessKey",
+                                        "iam:UpdateAccessKey",
+                                        "iam:DeleteAccessKey",
+                                        "iam:ResyncMFADevice"
+                                    ],
+                                    "Resource": [
+                                        {
+                                            "Fn::Join": [
+                                                "",
+                                                [
+                                                    "arn:aws:iam::",
+                                                    {
+                                                        "Ref": "AWS::AccountId"
+                                                    },
+                                                    ":user/${aws:username}"
+                                                ]
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    {
+                        "PolicyName": "DenyIAMUserCreation",
+                        "PolicyDocument": {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Deny",
+                                    "Action": [
+                                        "iam:CreateUser"
+                                    ],
+                                    "Resource": "*"
+                                }
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    },
+    "Outputs" : {
+        "UsernameCreated" : { "Ref" : "user" }
+    }
+}
