@@ -14,7 +14,7 @@
             "Properties": {
                 "LoginProfile": {
                     "Password": { "Ref" : "PasswordOfUserBeingCreated" }
-                }
+                },
                 "Policies": [
                     {
                         "PolicyName": "ReadOnlyPolicy",
