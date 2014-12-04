@@ -173,6 +173,9 @@
         }
     },
     "Outputs" : {
-        "UsernameCreated" : { "Ref" : "user" }
+        "UsernameCreated" : {
+            "Description" : "Username created for Stelligent access",
+            "Value" : { "Ref" : "user" }
+        }
     }
 }
