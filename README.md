@@ -12,7 +12,7 @@ This repo gives you the tools to avoid this anti-pattern. It contains two CloudF
 
 ###contents
 ========
-* **[conf/full_privilege_group.json](https://github.com/stelligent/aws_group_policy/blob/master/conf/full_privilege_group.json)** -- this CloudFormation template creates an IAM Group with full admin privleges. 
+* **[conf/full_privilege_group.json](https://github.com/stelligent/aws_group_policy/blob/master/conf/full_privilege_group.json)** -- this CloudFormation template creates an IAM Group with full admin privileges. 
 * **[conf/kickoff.json](https://github.com/stelligent/aws_group_policy/blob/master/conf/kickoff.json)** -- this CloudFormation template creates a read-only IAM group, a full admin IAM group, and an IAM user that is a member of the read-only group. This is used for new customers to get initial access to their AWS account in a secure manner.
 * **[conf/read_only_group.json](https://github.com/stelligent/aws_group_policy/blob/master/conf/read_only_group.json)** -- this CloudFormation template creates an IAM group with read-only access, but also the ability to create and attach an MFA to their IAM account.
 * **[conf/user.json](https://github.com/stelligent/aws_group_policy/blob/master/conf/user.json)** -- this isn't required, but is a simple CloudFormation template for creating a user. If you want to use the Cucumber feature, you can use this template to create a user to test with (though you'll still need to download the credentials from the console).
